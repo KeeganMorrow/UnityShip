@@ -7,30 +7,78 @@ public class Buoyant : MonoBehaviour {
     public GameObject water;
     public float airDrag = 1.0f;
     public float waterDrag = 5.0f;
+    public float floaterOffsetY = 0f;
+    public float floaterOffsetBackwardX = 1.0f;
+    public float floaterOffsetForwardX = 1.0f;
+    public float floaterOffsetZ = 1.0f;
     private WaterController waterController;
     private Transform transform;
     private Rigidbody rigidbody;
+    private Vector3[] testpoints;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    private void Start () {
         waterController = water.GetComponent<WaterController>();
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        float distance = waterController.DistanceToWater(transform.position, Time.fixedTime);
+
+        testpoints = new Vector3[4];
+    }
+
+    private Vector3 getBuoyancyForce(Vector3 worldPoint)
+    {
+        float distance = waterController.DistanceToWater(worldPoint, Time.fixedTime);
+        Vector3 buoyantForce = new Vector3(0, 0, 0);
         if (distance < 0)
         {
-            rigidbody.drag = waterDrag;
-            Vector3 buoyantForce = new Vector3(0f, distance * -1000f, 0f);
-            rigidbody.AddForce(buoyantForce);
+            buoyantForce.y = distance * -2000f;
         }
-        else
+        return buoyantForce;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        testpoints[0] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, floaterOffsetZ);
+        testpoints[1] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, -floaterOffsetZ);
+        testpoints[2] = new Vector3(-floaterOffsetForwardX, floaterOffsetY, floaterOffsetZ);
+        testpoints[3] = new Vector3(-floaterOffsetForwardX, floaterOffsetY, -floaterOffsetZ);
+        for ( int i = 0; i < testpoints.Length; i++)
         {
-            rigidbody.drag = airDrag;
+            Vector3 worldPoint = transform.TransformPoint(testpoints[i]);
+            Vector3 pointForce = getBuoyancyForce(worldPoint);
+            rigidbody.AddForceAtPosition(pointForce, worldPoint);
         }
-        Debug.Log("Distance to water is " + distance, this);
-	}
+    }
+
+    private void LateUpdate()
+    {
+        if (transform.localRotation.z < -45)
+        {
+            transform.Rotate(new Vector3(0, 0, 1), -45);
+        }
+        else if (transform.localRotation.eulerAngles.z > 45)
+        {
+            transform.Rotate(new Vector3(0, 0, 1), 45);
+        }
+        if (transform.localRotation.eulerAngles.x < -45)
+        {
+            transform.Rotate(new Vector3(1, 0, 0), -45);
+        }
+        else if (transform.localRotation.eulerAngles.x > 45)
+        {
+            transform.Rotate(new Vector3(1, 0, 0), 45);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        for (int i = 0; i < testpoints.Length; i++)
+        {
+            Vector3 testpoint = transform.TransformPoint(testpoints[i]);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(testpoint, .25f);
+        }
+    }
+
 }
