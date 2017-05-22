@@ -70,7 +70,7 @@ public class WaterFactory : MonoBehaviour {
 
     }
 
-    void Start()
+    void Awake()
     {
         generator = new PlaneGenerator();
         GetComponent<MeshFilter>().mesh = generator.CreatePlaneMesh(tileRes, tileRes, tileSize, tileSize, false, true, false);
