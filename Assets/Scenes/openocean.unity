@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 1
-  scale: 0.1
+  scale: 0.5
   speed: 1
   waveDistance: 1
   noiseStrength: 1
@@ -535,3 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbeadb8bbc4f0e43b7d7d45ac71ad89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  widthSegments: 20
+  lengthSegments: 20
+  width: 10
+  length: 10
