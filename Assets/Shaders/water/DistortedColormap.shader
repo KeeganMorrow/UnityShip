@@ -2,7 +2,7 @@
     Properties {
         _MainTex ("Pattern", 2D) = "white" {}
         _ColorRamp ("Colour Palette", 2D) = "gray" {}
-
+		_Tess ("Tessellation", Range(1,32)) = 4
 		_ampx1 ("X Harmonic 1 Amplitude", float) = 1.0
 		_freqx1 ("X Harmonic 1 Frequency", float) = 1.0
 		_ampx2 ("X Harmonic 2 Amplitude", float) = 2.3
@@ -16,14 +16,25 @@
 		_freqy2 ("Z Harmonic 2 Frequency", float) = 1.8
 		_ampy3 ("Z Harmonic 3 Amplitude", float) = 2.8
 		_freqy3 ("Z Harmonic 3 Frequency", float) = 0.8
+		_Phong ("Phong Strengh", Range(0,1)) = 0.5
 
 		_strength ("Strength", float) = 1.0
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
+	  LOD 300
       CGPROGRAM
-      #pragma surface surf Lambert
+	  #pragma surface surf Lambert tessellate:tessDistance tessphong:_Phong nolightmap
+	  #pragma target 4.6
+	  #include "Tessellation.cginc"
 
+	  float _Tess;
+	  float _Phong;
+	  float4 tessDistance (appdata_full v0, appdata_full v1, appdata_full v2) {
+		float minDist = 10.0;
+		float maxDist = 25.0;
+		return UnityDistanceBasedTess(v0.vertex, v1.vertex, v2.vertex, minDist, maxDist, _Tess);
+	  }
       struct Input {
 		  float2 uv_MainTex;
           float3 worldPos;
