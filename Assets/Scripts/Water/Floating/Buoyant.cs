@@ -16,15 +16,40 @@ public class Buoyant : MonoBehaviour {
     private WaterController waterController;
     private Transform transform;
     private Rigidbody rigidbody;
-    private Vector3[] testpoints;
+    private GameObject[] surfacePoints;
 
     // Use this for initialization
-    private void Start () {
+
+    private GameObject addSurfacePoint(string name, Vector3 position)
+    {
+        var obj = new GameObject(name);
+        obj.SetActive(false);
+        var trans = obj.GetComponent<Transform>();
+        trans.SetParent(GetComponent<Transform>().parent);
+        trans.position = transform.TransformPoint(position);
+        var rig = obj.AddComponent<Rigidbody>();
+        rig.constraints = RigidbodyConstraints.FreezeAll;
+        //rig.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        var spring = obj.AddComponent<SpringJoint>();
+        spring.connectedBody = rigidbody;
+        spring.spring = 5000f;
+        obj.SetActive(true);
+        return obj;
+    }
+
+    private void Awake()
+    {
         waterController = water.GetComponent<WaterController>();
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
+        surfacePoints = new GameObject[4];
+    }
 
-        testpoints = new Vector3[4];
+    private void Start () {
+        surfacePoints[0] = addSurfacePoint("floaterBowStar", new Vector3(floaterOffsetX, floaterOffsetY, floaterOffsetBackwardZ));
+        surfacePoints[1] = addSurfacePoint("floaterSternStar", new Vector3(floaterOffsetX, floaterOffsetY, -floaterOffsetBackwardZ));
+        surfacePoints[2] = addSurfacePoint("floaterBowLar", new Vector3(-floaterOffsetX, floaterOffsetY, floaterOffsetForwardZ));
+        surfacePoints[3] = addSurfacePoint("floaterSternLar", new Vector3(-floaterOffsetX, floaterOffsetY, -floaterOffsetForwardZ));
     }
 
     private Vector3 getBuoyancyForce(Vector3 worldPoint)
@@ -39,31 +64,19 @@ public class Buoyant : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         rigidbody.centerOfMass = centerOfMass;
-
-        testpoints[0] = new Vector3(floaterOffsetX, floaterOffsetY, floaterOffsetBackwardZ);
-        testpoints[1] = new Vector3(floaterOffsetX, floaterOffsetY, -floaterOffsetBackwardZ);
-        testpoints[2] = new Vector3(-floaterOffsetX, floaterOffsetY, floaterOffsetForwardZ);
-        testpoints[3] = new Vector3(-floaterOffsetX, floaterOffsetY, -floaterOffsetForwardZ);
-        for ( int i = 0; i < testpoints.Length; i++)
+        for ( int i = 0; i < surfacePoints.Length; i++)
         {
-            Vector3 worldPoint = transform.TransformPoint(testpoints[i]);
-            Vector3 pointForce = getBuoyancyForce(worldPoint);
-            rigidbody.AddForceAtPosition(pointForce, worldPoint);
-            Debug.DrawRay(worldPoint, pointForce*.01f, Color.green);
+            var obj = surfacePoints[i];
+            Vector3 worldPoint = obj.GetComponent<Transform>().position;
+            var waterY = waterController.DistanceToWater(worldPoint, Time.fixedTime);
+            worldPoint.y = waterY;
+            obj.GetComponent<Transform>().position = worldPoint;
+            //Vector3 pointForce = getBuoyancyForce(worldPoint);
+            //rigidbody.AddForceAtPosition(pointForce, worldPoint);
+            //Debug.DrawRay(worldPoint, pointForce*.01f, Color.green);
         }
     }
-
-    void OnDrawGizmos()
-    {
-        for (int i = 0; i < testpoints.Length; i++)
-        {
-            Vector3 testpoint = transform.TransformPoint(testpoints[i]);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(testpoint, .25f);
-        }
-    }
-
 }
