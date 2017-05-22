@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class WaterGeometry : MonoBehaviour
 {
-
+    public int widthSegments = 10;
+    public int lengthSegments = 10;
+    public float width = 10f;
+    public float length = 10f;
     private Mesh watermesh;
     private WaterController waterController;
     private float baseheight = 0;
@@ -12,6 +15,8 @@ public class WaterGeometry : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlaneGenerator generator = new PlaneGenerator();
+        GetComponent<MeshFilter>().mesh = generator.CreatePlaneMesh(widthSegments, lengthSegments, width, length, false, true, false);
         watermesh = GetComponent<MeshFilter>().mesh;
         waterController = GetComponent<WaterController>();
     }
