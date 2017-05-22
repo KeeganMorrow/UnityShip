@@ -11,6 +11,7 @@ public class WaterGeometry : MonoBehaviour
     private Mesh watermesh;
     private WaterController waterController;
     private float baseheight = 0;
+    private Transform transform;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class WaterGeometry : MonoBehaviour
         GetComponent<MeshFilter>().mesh = generator.CreatePlaneMesh(widthSegments, lengthSegments, width, length, false, true, false);
         watermesh = GetComponent<MeshFilter>().mesh;
         waterController = GetComponent<WaterController>();
+        transform = GetComponent<Transform>();
     }
 
     void FixedUpdate()
@@ -28,9 +30,9 @@ public class WaterGeometry : MonoBehaviour
         {
             Vector3 vertexPos = watermesh.vertices[i];
             vertexPos.y = baseheight;
-            Vector3 vertexPosGlobal = GetComponent<Transform>().TransformPoint(vertexPos);
-            vertexPosGlobal.y = waterController.GetWaveYPos(vertexPos, Time.fixedTime);
-            vertices[i] = GetComponent<Transform>().InverseTransformPoint(vertexPosGlobal); ;
+            Vector3 vertexPosGlobal = transform.TransformPoint(vertexPos);
+            vertexPosGlobal.y = waterController.GetWaveYPos(vertexPosGlobal, Time.fixedTime);
+            vertices[i] = transform.InverseTransformPoint(vertexPosGlobal); ;
         }
         watermesh.vertices = vertices;
         watermesh.RecalculateNormals();
