@@ -25,7 +25,8 @@
       #pragma surface surf Lambert
 
       struct Input {
-          float2 uv_MainTex;
+		  float2 uv_MainTex;
+          float3 worldPos;
       };
 
       sampler2D _MainTex;
@@ -62,8 +63,8 @@
 		  return y;
 	  }
       void surf (Input IN, inout SurfaceOutput o) {
-	      IN.uv_MainTex.x += calculateDistortionX(IN.uv_MainTex.y);
-		  IN.uv_MainTex.y += calculateDistortionY(IN.uv_MainTex.x);
+	      IN.uv_MainTex.x += calculateDistortionX(IN.worldPos.y);
+		  IN.uv_MainTex.y += calculateDistortionY(IN.worldPos.x);
 		  float greyscale = tex2D(_MainTex, IN.uv_MainTex).r;
           o.Albedo = tex2D(_ColorRamp, float2(greyscale, 0.5)).rgb;
       }
