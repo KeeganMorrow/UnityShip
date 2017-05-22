@@ -9,7 +9,6 @@ public class WaterFactory : MonoBehaviour {
     public float lodOffsetY = 0.0f;
     public int tileRes = 10;
     public int tileLodRes = 5;
-    public GameObject followObj;
     PlaneGenerator generator;
     WaterController waterController;
     private GameObject[] lods = new GameObject[8];
@@ -76,12 +75,5 @@ public class WaterFactory : MonoBehaviour {
         GetComponent<MeshFilter>().mesh = generator.CreatePlaneMesh(tileRes, tileRes, tileSize, tileSize, false, true, false);
         waterController = GetComponent<WaterController>();
         buildLods();
-    }
-
-    private void Update()
-    {
-        var followPos = followObj.GetComponent<Transform>().position;
-        var transform = GetComponent<Transform>();
-        transform.position = new Vector3(followPos.x, transform.position.y, followPos.z);
     }
 }

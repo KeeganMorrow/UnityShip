@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterController : MonoBehaviour {
-    private Transform transform;
+
+    public GameObject followObj;
 
     public bool isMoving;
 
@@ -16,14 +17,23 @@ public class WaterController : MonoBehaviour {
     public float noiseStrength = 1f;
     public float noiseWalk = 1f;
 
+    private Transform transform;
+    private Material material;
+
     // Use this for initialization
     void Start() {
         transform = GetComponent<Transform>();
+        material = GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
-    void Update() {
-
+    private void Update()
+    {
+        var followPos = followObj.GetComponent<Transform>().position;
+        var transform = GetComponent<Transform>();
+        transform.position = new Vector3(followPos.x, transform.position.y, followPos.z);
+        var texturePos = new Vector2(followPos.x, followPos.z) * 0.2f;
+        material.SetTextureOffset("_MainTex", texturePos);
     }
     public float SineXWave(Vector3 position, float currTime) {
         float x = position.x;
@@ -51,13 +61,11 @@ public class WaterController : MonoBehaviour {
         }
         return y;
     }
-
+    
+    // TODO(Keegan, rename this function to make sense)
     public float DistanceToWater(Vector3 position, float currTime)
     {
         float waterHeight = GetWaveYPos(new Vector3(position.x, transform.position.y, position.z), currTime);
-
-        float distanceToWater = position.y - waterHeight;
-
-        return distanceToWater;
+        return waterHeight;
     }
 }
