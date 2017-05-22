@@ -8,9 +8,9 @@ public class Buoyant : MonoBehaviour {
     public float airDrag = 1.0f;
     public float waterDrag = 5.0f;
     public float floaterOffsetY = 0f;
-    public float floaterOffsetBackwardX = 1.0f;
-    public float floaterOffsetForwardX = 1.0f;
-    public float floaterOffsetZ = 1.0f;
+    public float floaterOffsetBackwardZ = 1.0f;
+    public float floaterOffsetForwardZ = 1.0f;
+    public float floaterOffsetX = 1.0f;
     public float buoyancyFactor = 1000f;
     public Vector3 centerOfMass = new Vector3(0, 0, 0);
     private WaterController waterController;
@@ -43,10 +43,10 @@ public class Buoyant : MonoBehaviour {
     {
         rigidbody.centerOfMass = centerOfMass;
 
-        testpoints[0] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, floaterOffsetZ);
-        testpoints[1] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, -floaterOffsetZ);
-        testpoints[2] = new Vector3(-floaterOffsetForwardX, floaterOffsetY, floaterOffsetZ);
-        testpoints[3] = new Vector3(-floaterOffsetForwardX, floaterOffsetY, -floaterOffsetZ);
+        testpoints[0] = new Vector3(floaterOffsetX, floaterOffsetY, floaterOffsetBackwardZ);
+        testpoints[1] = new Vector3(floaterOffsetX, floaterOffsetY, -floaterOffsetBackwardZ);
+        testpoints[2] = new Vector3(-floaterOffsetX, floaterOffsetY, floaterOffsetForwardZ);
+        testpoints[3] = new Vector3(-floaterOffsetX, floaterOffsetY, -floaterOffsetForwardZ);
         for ( int i = 0; i < testpoints.Length; i++)
         {
             Vector3 worldPoint = transform.TransformPoint(testpoints[i]);
