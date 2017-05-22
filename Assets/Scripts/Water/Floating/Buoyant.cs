@@ -11,6 +11,8 @@ public class Buoyant : MonoBehaviour {
     public float floaterOffsetBackwardX = 1.0f;
     public float floaterOffsetForwardX = 1.0f;
     public float floaterOffsetZ = 1.0f;
+    public float buoyancyFactor = 1000f;
+    public Vector3 centerOfMass = new Vector3(0, 0, 0);
     private WaterController waterController;
     private Transform transform;
     private Rigidbody rigidbody;
@@ -31,7 +33,7 @@ public class Buoyant : MonoBehaviour {
         Vector3 buoyantForce = new Vector3(0, 0, 0);
         if (distance < 0)
         {
-            buoyantForce.y = distance * -2000f;
+            buoyantForce.y = distance * -buoyancyFactor;
         }
         return buoyantForce;
     }
@@ -39,6 +41,8 @@ public class Buoyant : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        rigidbody.centerOfMass = centerOfMass;
+
         testpoints[0] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, floaterOffsetZ);
         testpoints[1] = new Vector3(floaterOffsetBackwardX, floaterOffsetY, -floaterOffsetZ);
         testpoints[2] = new Vector3(-floaterOffsetForwardX, floaterOffsetY, floaterOffsetZ);
@@ -48,26 +52,7 @@ public class Buoyant : MonoBehaviour {
             Vector3 worldPoint = transform.TransformPoint(testpoints[i]);
             Vector3 pointForce = getBuoyancyForce(worldPoint);
             rigidbody.AddForceAtPosition(pointForce, worldPoint);
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (transform.localRotation.z < -45)
-        {
-            transform.Rotate(new Vector3(0, 0, 1), -45);
-        }
-        else if (transform.localRotation.eulerAngles.z > 45)
-        {
-            transform.Rotate(new Vector3(0, 0, 1), 45);
-        }
-        if (transform.localRotation.eulerAngles.x < -45)
-        {
-            transform.Rotate(new Vector3(1, 0, 0), -45);
-        }
-        else if (transform.localRotation.eulerAngles.x > 45)
-        {
-            transform.Rotate(new Vector3(1, 0, 0), 45);
+            Debug.DrawRay(worldPoint, pointForce*.01f, Color.green);
         }
     }
 

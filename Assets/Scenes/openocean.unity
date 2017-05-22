@@ -313,7 +313,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1194562189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.662698, y: 0.39, z: 2.0415435}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 242627552}
@@ -327,9 +327,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1194562189}
   serializedVersion: 2
-  m_Mass: 400
-  m_Drag: 5
-  m_AngularDrag: 0.05
+  m_Mass: 200
+  m_Drag: 2
+  m_AngularDrag: 0.4
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -349,6 +349,12 @@ MonoBehaviour:
   water: {fileID: 1443673818}
   airDrag: 1
   waterDrag: 5
+  floaterOffsetY: -0.5
+  floaterOffsetBackwardX: 1.4
+  floaterOffsetForwardX: 1
+  floaterOffsetZ: 0.5
+  buoyancyFactor: 1000
+  centerOfMass: {x: 0.25, y: -2, z: 0}
 --- !u!1 &1437207784
 GameObject:
   m_ObjectHideFlags: 0
