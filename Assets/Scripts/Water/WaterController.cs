@@ -44,7 +44,7 @@ public class WaterController : MonoBehaviour {
     public float GetWaveYPos(Vector3 position, float currTime)
     {
         // TODO(Keegan, add waves here)
-        float y = transform.position.y;
+        float y = position.y;
         if (isMoving)
         {
             y += SineXWave(position, currTime);
@@ -54,7 +54,7 @@ public class WaterController : MonoBehaviour {
 
     public float DistanceToWater(Vector3 position, float currTime)
     {
-        float waterHeight = GetWaveYPos(position, currTime);
+        float waterHeight = GetWaveYPos(new Vector3(position.x, transform.position.y, position.z), currTime);
 
         float distanceToWater = position.y - waterHeight;
 
