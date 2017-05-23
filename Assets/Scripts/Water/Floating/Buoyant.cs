@@ -28,11 +28,11 @@ public class Buoyant : MonoBehaviour {
         trans.SetParent(GetComponent<Transform>().parent);
         trans.position = transform.TransformPoint(position);
         var rig = obj.AddComponent<Rigidbody>();
-        rig.constraints = RigidbodyConstraints.FreezeAll;
-        //rig.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        //rig.constraints = RigidbodyConstraints.FreezeAll;
+        rig.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
         var spring = obj.AddComponent<SpringJoint>();
         spring.connectedBody = rigidbody;
-        spring.spring = 5000f;
+        spring.spring = buoyancyFactor;
         obj.SetActive(true);
         return obj;
     }
@@ -50,17 +50,6 @@ public class Buoyant : MonoBehaviour {
         surfacePoints[1] = addSurfacePoint("floaterSternStar", new Vector3(floaterOffsetX, floaterOffsetY, -floaterOffsetBackwardZ));
         surfacePoints[2] = addSurfacePoint("floaterBowLar", new Vector3(-floaterOffsetX, floaterOffsetY, floaterOffsetForwardZ));
         surfacePoints[3] = addSurfacePoint("floaterSternLar", new Vector3(-floaterOffsetX, floaterOffsetY, -floaterOffsetForwardZ));
-    }
-
-    private Vector3 getBuoyancyForce(Vector3 worldPoint)
-    {
-        float distance = waterController.DistanceToWater(worldPoint, Time.fixedTime);
-        Vector3 buoyantForce = new Vector3(0, 0, 0);
-        if (distance < 0)
-        {
-            buoyantForce.y = distance * -buoyancyFactor;
-        }
-        return buoyantForce;
     }
 
     // Update is called once per frame

@@ -30,9 +30,7 @@ public class WaterFactory : MonoBehaviour {
 
         meshRenderer.material = GetComponent<MeshRenderer>().material;
         
-        var waterGeometry = lodWater.AddComponent<WaterGeometry>();
         Assert.IsNotNull(waterController);
-        waterGeometry.waterController = waterController;
         return lodWater;
     }
 

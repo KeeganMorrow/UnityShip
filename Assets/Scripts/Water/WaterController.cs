@@ -34,6 +34,10 @@ public class WaterController : MonoBehaviour {
         transform.position = new Vector3(followPos.x, transform.position.y, followPos.z);
         var texturePos = new Vector2(followPos.x, followPos.z) * 0.2f;
         material.SetTextureOffset("_MainTex", texturePos);
+        material.SetFloat("_geoSpeed", speed);
+        material.SetFloat("_geoDistance", waveDistance);
+        material.SetFloat("_GeoScale", scale);
+        material.SetFloat("_geoWaveTime", Time.time);
     }
     public float SineXWave(Vector3 position, float currTime) {
         float x = position.x;
@@ -45,7 +49,7 @@ public class WaterController : MonoBehaviour {
         y += Mathf.Sin((currTime * speed + waveType) / waveDistance) * scale;
 
         //Add noise to make it more realistic
-        y += Mathf.PerlinNoise(x + noiseWalk, y + Mathf.Sin(currTime * 0.1f)) * noiseStrength;
+        //y += Mathf.PerlinNoise(x + noiseWalk, y + Mathf.Sin(currTime * 0.1f)) * noiseStrength;
 
         return y;
     }

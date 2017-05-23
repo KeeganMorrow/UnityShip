@@ -16,15 +16,23 @@
 		_freqy2 ("Z Harmonic 2 Frequency", float) = 1.8
 		_ampy3 ("Z Harmonic 3 Amplitude", float) = 2.8
 		_freqy3 ("Z Harmonic 3 Frequency", float) = 0.8
+
+		_geoSpeed ("GeoWaveSpeed", float) = 1.8
+		_geoDistance ("GeoWaveDistance", float) = 2.8
+		_GeoScale ("GeoWaveScale", float) = 0.8
+		_geoWaveTime("GeoWaveTime", float) = 0
+
 		_Phong ("Phong Strengh", Range(0,1)) = 0.5
 
 		_strength ("Strength", float) = 1.0
+
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
 	  LOD 300
       CGPROGRAM
-	  #pragma surface surf Lambert tessellate:tessDistance tessphong:_Phong nolightmap
+	  #pragma surface surf Lambert tessellate:tessDistance tessphong:_Phong nolightmap vertex:vert
+	  //#pragma surface surf Lambert nolightmap vertex:vert
 	  #pragma target 4.6
 	  #include "Tessellation.cginc"
 
@@ -65,6 +73,7 @@
 		  x *= _strength;
 		  return x;
 	  }
+
 	  float calculateDistortionY(float x) {
 		  float y = 0.0;
 	  	  y += sin(x * _ampy1 + _Time * _freqy1);
@@ -73,6 +82,18 @@
 		  y *= _strength;
 		  return y;
 	  }
+
+		float _geoStrength;
+		float _geoSpeed;
+		float _geoDistance;
+		float _GeoScale;
+		float _geoWaveTime;
+
+      void vert (inout appdata_full v) {
+	  	  //v.vertex.y += sin(v.vertex.x * _ampy1 + _Time * _freqy1);
+	  	  v.vertex.y += sin( (_geoWaveTime * _geoSpeed + v.vertex.z ) / _geoDistance) * _GeoScale;
+      }
+
       void surf (Input IN, inout SurfaceOutput o) {
 	      IN.uv_MainTex.x += calculateDistortionX(IN.worldPos.y);
 		  IN.uv_MainTex.y += calculateDistortionY(IN.worldPos.x);
