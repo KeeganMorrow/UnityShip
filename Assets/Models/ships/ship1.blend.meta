@@ -21,6 +21,21 @@ ModelImporter:
     100026: Sail1_002
     100028: Sail1_003
     100030: //RootNode
+    100032: BraceBow1
+    100034: BraceBow2
+    100036: BraceBow3
+    100038: BraceBow4
+    100040: BraceStern1
+    100042: BraceStern2
+    100044: BraceStern3
+    100046: BraceStern4
+    100048: Hull
+    100050: MastBow
+    100052: MastStern
+    100054: SailBow1
+    100056: SailBow2
+    100058: SailStern1
+    100060: SailStern2
     400000: Cube
     400002: Cylinder
     400004: Cylinder_001
@@ -37,6 +52,21 @@ ModelImporter:
     400026: Sail1_002
     400028: Sail1_003
     400030: //RootNode
+    400032: BraceBow1
+    400034: BraceBow2
+    400036: BraceBow3
+    400038: BraceBow4
+    400040: BraceStern1
+    400042: BraceStern2
+    400044: BraceStern3
+    400046: BraceStern4
+    400048: Hull
+    400050: MastBow
+    400052: MastStern
+    400054: SailBow1
+    400056: SailBow2
+    400058: SailStern1
+    400060: SailStern2
     2300000: Cube
     2300002: Cylinder
     2300004: Cylinder_001
@@ -52,6 +82,21 @@ ModelImporter:
     2300024: Sail1_001
     2300026: Sail1_002
     2300028: Sail1_003
+    2300030: BraceBow1
+    2300032: BraceBow2
+    2300034: BraceBow3
+    2300036: BraceBow4
+    2300038: BraceStern1
+    2300040: BraceStern2
+    2300042: BraceStern3
+    2300044: BraceStern4
+    2300046: Hull
+    2300048: MastBow
+    2300050: MastStern
+    2300052: SailBow1
+    2300054: SailBow2
+    2300056: SailStern1
+    2300058: SailStern2
     3300000: Cube
     3300002: Cylinder
     3300004: Cylinder_001
@@ -67,6 +112,21 @@ ModelImporter:
     3300024: Sail1_001
     3300026: Sail1_002
     3300028: Sail1_003
+    3300030: BraceBow1
+    3300032: BraceBow2
+    3300034: BraceBow3
+    3300036: BraceBow4
+    3300038: BraceStern1
+    3300040: BraceStern2
+    3300042: BraceStern3
+    3300044: BraceStern4
+    3300046: Hull
+    3300048: MastBow
+    3300050: MastStern
+    3300052: SailBow1
+    3300054: SailBow2
+    3300056: SailStern1
+    3300058: SailStern2
     4300000: Cylinder_001
     4300002: Cylinder
     4300004: Cube
@@ -82,6 +142,21 @@ ModelImporter:
     4300024: Cylinder_009
     4300026: Sail1_002
     4300028: Sail1_003
+    4300030: BraceBow3
+    4300032: MastBow
+    4300034: Hull
+    4300036: SailBow2
+    4300038: BraceBow4
+    4300040: BraceBow1
+    4300042: BraceBow2
+    4300044: SailBow1
+    4300046: MastStern
+    4300048: BraceStern3
+    4300050: BraceStern4
+    4300052: BraceStern1
+    4300054: BraceStern2
+    4300056: SailStern2
+    4300058: SailStern1
     7400000: Default Take
     9500000: //RootNode
   materials:
