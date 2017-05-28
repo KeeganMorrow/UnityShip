@@ -124,7 +124,7 @@ Cloth:
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
-  m_ExternalAcceleration: {x: 0, y: 0, z: 40}
+  m_ExternalAcceleration: {x: 50, y: 0, z: 0}
   m_RandomAcceleration: {x: 0, y: 0, z: 0}
   m_WorldVelocityScale: 0.5
   m_WorldAccelerationScale: 1
@@ -1624,6 +1624,77 @@ Cloth:
 Transform:
   m_PrefabParentObject: {fileID: 400026, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
   m_PrefabInternal: {fileID: 1227174558}
+--- !u!1 &1166837115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1166837118}
+  - component: {fileID: 1166837117}
+  - component: {fileID: 1166837116}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!154 &1166837116
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166837115}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: af0207da72e8ec24ebbfa06f0fd5095b, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &1166837117
+Terrain:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166837115}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_TerrainData: {fileID: 15600000, guid: af0207da72e8ec24ebbfa06f0fd5095b, type: 2}
+  m_TreeDistance: 2000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_CastShadows: 1
+  m_DrawHeightmap: 1
+  m_DrawTreesAndFoliage: 1
+  m_ReflectionProbeUsage: 1
+  m_MaterialType: 0
+  m_LegacySpecular:
+    serializedVersion: 2
+    rgba: 4286545791
+  m_LegacyShininess: 0.078125
+  m_MaterialTemplate: {fileID: 0}
+  m_BakeLightProbesForTrees: 1
+  m_ScaleInLightmap: 0.0512
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!4 &1166837118
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166837115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -279.7, y: -27, z: 157.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1227174558
 Prefab:
   m_ObjectHideFlags: 0
@@ -1730,10 +1801,10 @@ MonoBehaviour:
   water: {fileID: 1443673818}
   airDrag: 1
   waterDrag: 5
-  floaterOffsetY: -0.5
-  floaterOffsetBackwardZ: 1
-  floaterOffsetForwardZ: 1
-  floaterOffsetX: 1
+  floaterOffsetY: -5
+  floaterOffsetBackwardZ: 20
+  floaterOffsetForwardZ: 25
+  floaterOffsetX: 5
   buoyancyFactor: 10000
   centerOfMass: {x: 0.25, y: -2, z: 0}
 --- !u!65 &1382819135
@@ -1774,8 +1845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c87d19b3d1c2345a1823e5b705618c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 1000
-  rotatespeed: 120
+  movespeed: 4000
+  rotatespeed: 3000
   jumpspeed: 0
 --- !u!1 &1437207784
 GameObject:
@@ -1908,9 +1979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followObj: {fileID: 1382819132}
   isMoving: 1
-  scale: 0.2
-  speed: 1
-  waveDistance: 1
+  scale: 5
+  speed: 10
+  waveDistance: 20
   noiseStrength: 1
   noiseWalk: 1
 --- !u!33 &1443673821
@@ -1971,7 +2042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd73963b600535d4ab3bd165b6625998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 400
+  tileSize: 600
   lodOffsetY: -2
   tileRes: 30
   tileLodRes: 10
@@ -2877,7 +2948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
       propertyPath: closestDistance
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
