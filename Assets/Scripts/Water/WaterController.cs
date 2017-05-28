@@ -17,6 +17,8 @@ public class WaterController : MonoBehaviour {
     public float noiseStrength = 1f;
     public float noiseWalk = 1f;
 
+    public float offsetSpeed = .05f;
+
     private Transform transform;
     private Material material;
 
@@ -32,7 +34,7 @@ public class WaterController : MonoBehaviour {
         var followPos = followObj.GetComponent<Transform>().position;
         var transform = GetComponent<Transform>();
         transform.position = new Vector3(followPos.x, transform.position.y, followPos.z);
-        var texturePos = new Vector2(followPos.x, followPos.z) * 0.2f;
+        var texturePos = new Vector2(followPos.x, followPos.z) * offsetSpeed;
         material.SetTextureOffset("_MainTex", texturePos);
         material.SetFloat("_geoSpeed", speed);
         material.SetFloat("_geoDistance", waveDistance);

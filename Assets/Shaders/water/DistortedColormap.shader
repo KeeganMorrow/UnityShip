@@ -1,4 +1,6 @@
-﻿  Shader "Keegan/distorted_colormap" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+  Shader "Keegan/distorted_colormap" {
     Properties {
         _MainTex ("Pattern", 2D) = "white" {}
         _ColorRamp ("Colour Palette", 2D) = "gray" {}
@@ -28,7 +30,7 @@
 
     }
     SubShader {
-      Tags { "RenderType" = "Opaque" }
+      Tags { "RenderType" = "Opaque" "DisableBatching" = "true" }
 	  LOD 300
       CGPROGRAM
 	  #pragma surface surf Lambert tessellate:tessDistance tessphong:_Phong nolightmap vertex:vert
@@ -90,8 +92,9 @@
 		float _geoWaveTime;
 
       void vert (inout appdata_full v) {
+			float3 worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
 	  	  //v.vertex.y += sin(v.vertex.x * _ampy1 + _Time * _freqy1);
-	  	  v.vertex.y += sin( (_geoWaveTime * _geoSpeed + v.vertex.z ) / _geoDistance) * _GeoScale;
+	  	  v.vertex.y += sin( (_geoWaveTime * _geoSpeed + worldPos.z ) / _geoDistance) * _GeoScale;
       }
 
       void surf (Input IN, inout SurfaceOutput o) {
