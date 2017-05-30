@@ -6,6 +6,7 @@ public class clickObserver : MonoBehaviour {
 
     public float maxDistance = Mathf.Infinity;
     public GameObject moveObject;
+    public GameObject controlObject;
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +24,16 @@ public class clickObserver : MonoBehaviour {
         {
             Debug.DrawLine(ray.origin, hit.point, Color.green);
             Debug.Log(hit.point);
-            var tilecoord = hit.rigidbody.GetComponent<shipSpace>().GetTileCoordWorld(hit.point);
+            var tilecoord = hit.rigidbody.GetComponent<ShipSpace>().GetTileCoordWorld(hit.point);
             moveObject.transform.parent = hit.rigidbody.GetComponent<Transform>();
-            var charNav = moveObject.GetComponent<CharNavigate>();
-            charNav.shipX = tilecoord.x;
-            charNav.shipZ = tilecoord.z;
+            var shipObject = moveObject.GetComponent<ShipObject>();
+            shipObject.shipX = tilecoord.x;
+            shipObject.shipZ = tilecoord.z;
             moveObject.SetActive(true);
+            if (Input.GetMouseButton(0))
+            {
+                controlObject.GetComponent<PathFind>().MovePosition(tilecoord);
+            }
         }
         else
         {

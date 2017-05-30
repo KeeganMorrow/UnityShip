@@ -20,7 +20,7 @@ public struct TileCoord
     }
 };
 
-public class shipSpace : MonoBehaviour {
+public class ShipSpace : MonoBehaviour {
     public float gridSize = 1.0f;
     public Vector3 tileOffset = new Vector3(0f, 0f, 0f);
     public int gridWidth = 1;

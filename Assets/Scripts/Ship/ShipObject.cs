@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharNavigate : MonoBehaviour {
+public class ShipObject : MonoBehaviour {
     public GameObject shipGrid;
     public int shipX;
     public int shipZ;
@@ -13,7 +13,7 @@ public class CharNavigate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var grid = shipGrid.GetComponent<shipSpace>();
+        var grid = shipGrid.GetComponent<ShipSpace>();
         transform.localPosition = grid.GetPosition(new TileCoord(shipX, shipZ));
 	}
 }
