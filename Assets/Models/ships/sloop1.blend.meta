@@ -20,6 +20,8 @@ ModelImporter:
     100024: Plane_003
     100026: //RootNode
     100028: Plane_004
+    100030: SailStern
+    100032: TopSail
     400000: Cylinder
     400002: Cylinder_001
     400004: Cylinder_002
@@ -35,6 +37,8 @@ ModelImporter:
     400024: Plane_003
     400026: //RootNode
     400028: Plane_004
+    400030: SailStern
+    400032: TopSail
     2300000: Cylinder
     2300002: Cylinder_001
     2300004: Cylinder_002

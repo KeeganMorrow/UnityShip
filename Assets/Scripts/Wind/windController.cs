@@ -17,7 +17,15 @@ public class windController : MonoBehaviour {
             //TODO(Keegan, "Make more generic")
             var userCloth = windUser.GetComponent<Cloth>();
             //var userTransform = windUser.GetComponent<Transform>();
-            userCloth.externalAcceleration = transform.forward * windZone.windMain;
+            if (userCloth != null)
+            {
+                userCloth.externalAcceleration = transform.forward * windZone.windMain;
+            }
+            var userSail = windUser.GetComponent<Sail>();
+            if (userSail != null)
+            {
+                userSail.windVector = transform.forward * windZone.windMain;
+            }
         }
 	}
 }
