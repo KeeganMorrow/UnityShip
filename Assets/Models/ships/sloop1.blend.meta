@@ -22,6 +22,7 @@ ModelImporter:
     100028: Plane_004
     100030: SailStern
     100032: TopSail
+    100034: Rudder
     400000: Cylinder
     400002: Cylinder_001
     400004: Cylinder_002
@@ -39,6 +40,7 @@ ModelImporter:
     400028: Plane_004
     400030: SailStern
     400032: TopSail
+    400034: Rudder
     2300000: Cylinder
     2300002: Cylinder_001
     2300004: Cylinder_002
@@ -53,6 +55,7 @@ ModelImporter:
     2300022: Plane_002
     2300024: Plane_003
     2300026: Plane_004
+    2300028: Rudder
     3300000: Cylinder
     3300002: Cylinder_001
     3300004: Cylinder_002
@@ -67,6 +70,7 @@ ModelImporter:
     3300022: Plane_002
     3300024: Plane_003
     3300026: Plane_004
+    3300028: Rudder
     4300000: Plane_002
     4300002: Plane
     4300004: Cylinder_004
@@ -81,6 +85,7 @@ ModelImporter:
     4300022: Plane_001
     4300024: Plane_003
     4300026: Plane_004
+    4300028: Rudder
     6400000: Cylinder
     6400002: Cylinder_001
     6400004: Cylinder_002
@@ -95,6 +100,7 @@ ModelImporter:
     6400022: Plane_002
     6400024: Plane_003
     6400026: Plane_004
+    6400028: Rudder
     7400000: Default Take
     9500000: //RootNode
   materials:
