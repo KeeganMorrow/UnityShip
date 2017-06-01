@@ -2091,47 +2091,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windVector: {x: 0, y: 0, z: 0}
-  windPoint: {x: 1, y: 0, z: 0}
-  dirRotation: {x: 0, y: 0, z: 0}
+  windPoint: {x: 0, y: 0, z: 0}
+  dirRotation: {x: 0, y: 0, z: 180}
   liftCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: -1
-      inSlope: 0
-      outSlope: 0.011111111
+      time: -0.016507909
+      value: 0.035243087
+      inSlope: 0.0000342096
+      outSlope: 0.0000342096
       tangentMode: 0
     - serializedVersion: 2
-      time: 180
-      value: 1
-      inSlope: 0.011111111
-      outSlope: 0
+      time: 23.240088
+      value: 1.0016383
+      inSlope: 0.0029802322
+      outSlope: 0.0029802322
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 90.06213
+      value: 0.035292625
+      inSlope: -0.0007032207
+      outSlope: -0.0007032207
       tangentMode: 0
     m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_PostInfinity: 1
+    m_RotationOrder: 0
   dragCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
-      inSlope: 0
-      outSlope: -0.011111111
+      value: 0.027832031
+      inSlope: 0.0024328323
+      outSlope: 0.0024328323
       tangentMode: 0
     - serializedVersion: 2
-      time: 180
-      value: -1
-      inSlope: -0.011111111
-      outSlope: 0
+      time: 90.09965
+      value: 0.9980479
+      inSlope: -0.00021706702
+      outSlope: -0.00021706702
       tangentMode: 0
     m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  windScale: 0.5
-  drag: 1
-  lift: 1
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  windScale: 1
+  drag: 40
+  lift: 30
 --- !u!59 &1171249102
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3689,7 +3695,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   windScale: 1
   drag: 80
-  lift: 80
+  lift: 60
 --- !u!59 &1403108190
 HingeJoint:
   m_ObjectHideFlags: 0

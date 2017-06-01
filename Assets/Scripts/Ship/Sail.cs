@@ -6,27 +6,37 @@ public class Sail : MonoBehaviour {
     public Vector3 windVector = Vector3.zero;
     public Vector3 windPoint = new Vector3(0, 1, 0);
     public Vector3 dirRotation = new Vector3(1, 0, 0);
-    public AnimationCurve liftCurve = AnimationCurve.Linear(0,-1,180,1);
-    public AnimationCurve dragCurve = AnimationCurve.Linear(0,1,180,-1);
-
     public float windScale = 0.5f;
     public float drag = 1.0f;
     public float lift = 1.0f;
+    public float liftLossAngle = 30f;
+
+    private AnimationCurve liftCurve = new AnimationCurve();
+    private AnimationCurve dragCurve = new AnimationCurve();
 
     private Rigidbody rigidbody;
 
 	void Start () {
         rigidbody = transform.parent.parent.GetComponent<Rigidbody>();
+        liftCurve = new AnimationCurve();
+        dragCurve = new AnimationCurve();
+        liftCurve.AddKey(new Keyframe(0f, 0f, 0f, 0f));
+        liftCurve.AddKey(new Keyframe(liftLossAngle, 1.0f, 0f, 0f));
+        liftCurve.AddKey(new Keyframe(180f, 0f, 0f, 0f));
+        liftCurve.postWrapMode = WrapMode.Loop;
+        liftCurve.preWrapMode = WrapMode.Loop;
+        dragCurve.AddKey(new Keyframe(0f, 0f, 0f, 0f));
+        dragCurve.AddKey(new Keyframe(90f, 1f, 0f, 0f));
+        dragCurve.postWrapMode = WrapMode.Loop;
+        dragCurve.preWrapMode = WrapMode.Loop;
 	}
 	
 	void FixedUpdate () {
         //transform.rotation = Quaternion.LookRotation(windVector);
         //TODO: Use relative velocity to wind
         var sailDir = transform.TransformDirection(Quaternion.Euler(dirRotation) * transform.forward);
-        //var effectWindMag = Vector3.Dot(windVector * windScale, sailDir);
-        //var effectWind = windVector.normalized * effectWindMag;
         // TODO: Decide which makes more sense
-        var effectWind = windVector;
+        var effectWind = windVector + rigidbody.velocity;
 
         var rotation = Quaternion.Euler(0, 90, 0);
         var windAngle = Vector3.Angle(windVector, sailDir);
