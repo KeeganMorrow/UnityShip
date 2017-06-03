@@ -19,11 +19,6 @@
 		_ampy3 ("Z Harmonic 3 Amplitude", float) = 2.8
 		_freqy3 ("Z Harmonic 3 Frequency", float) = 0.8
 
-		_geoSpeed ("GeoWaveSpeed", float) = 1.8
-		_geoDistance ("GeoWaveDistance", float) = 2.8
-		_GeoScale ("GeoWaveScale", float) = 0.8
-		_geoWaveTime("GeoWaveTime", float) = 0
-
 		_Phong ("Phong Strengh", Range(0,1)) = 0.5
 
 		_strength ("Strength", float) = 1.0
@@ -40,6 +35,12 @@
 
 	  float _Tess;
 	  float _Phong;
+
+	  // Needs to be changed to match script
+	  #define WAVE_NUM 5
+	  float4 waves[WAVE_NUM];
+	  float4 wavedirs[WAVE_NUM];
+
 	  float4 tessDistance (appdata_full v0, appdata_full v1, appdata_full v2) {
 		float minDist = 10.0;
 		float maxDist = 25.0;
@@ -49,6 +50,7 @@
 		  float2 uv_MainTex;
           float3 worldPos;
       };
+
 
       sampler2D _MainTex;
 	  sampler2D _ColorRamp;
@@ -91,10 +93,17 @@
 		float _GeoScale;
 		float _geoWaveTime;
 
+		// Calculate the Y offset of a particular wave
+		// Note that this needs to match the logic used in the Water Controller script
+		float calculateWave(float4 wave, float4 wavedir, float time, float3 worldPos){
+			return wave.y * sin(dot(wavedir.xy, worldPos.xz) * wave.x + time * wave.z);
+		}
+
       void vert (inout appdata_full v) {
-			float3 worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
-	  	  //v.vertex.y += sin(v.vertex.x * _ampy1 + _Time * _freqy1);
-	  	  v.vertex.y += sin( (_geoWaveTime * _geoSpeed + worldPos.z ) / _geoDistance) * _GeoScale;
+		  float3 worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
+		  for(int i = 0; i < WAVE_NUM; i++){
+			v.vertex.y += calculateWave(waves[i], wavedirs[i], _Time.y, worldPos);
+		  }
       }
 
       void surf (Input IN, inout SurfaceOutput o) {
@@ -108,3 +117,4 @@
  
     Fallback "Diffuse"
   }
+

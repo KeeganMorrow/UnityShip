@@ -2093,51 +2093,10 @@ MonoBehaviour:
   windVector: {x: 0, y: 0, z: 0}
   windPoint: {x: 0, y: 0, z: 0}
   dirRotation: {x: 0, y: 0, z: 180}
-  liftCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: -0.016507909
-      value: 0.035243087
-      inSlope: 0.0000342096
-      outSlope: 0.0000342096
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 23.240088
-      value: 1.0016383
-      inSlope: 0.0029802322
-      outSlope: 0.0029802322
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 90.06213
-      value: 0.035292625
-      inSlope: -0.0007032207
-      outSlope: -0.0007032207
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 0
-  dragCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.027832031
-      inSlope: 0.0024328323
-      outSlope: 0.0024328323
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 90.09965
-      value: 0.9980479
-      inSlope: -0.00021706702
-      outSlope: -0.00021706702
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 0
-    m_RotationOrder: 0
   windScale: 1
   drag: 40
   lift: 30
+  liftLossAngle: 30
 --- !u!59 &1171249102
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3651,51 +3610,10 @@ MonoBehaviour:
   windVector: {x: 0, y: 0, z: 0}
   windPoint: {x: 0, y: 5, z: 0}
   dirRotation: {x: 0, y: 0, z: 180}
-  liftCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: -0.016507909
-      value: 0.035243087
-      inSlope: 0.0000342096
-      outSlope: 0.0000342096
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 23.240088
-      value: 1.0016383
-      inSlope: 0.0029802322
-      outSlope: 0.0029802322
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 90.06213
-      value: 0.035292625
-      inSlope: -0.0007032207
-      outSlope: -0.0007032207
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 0
-  dragCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.027832031
-      inSlope: 0.0024328323
-      outSlope: 0.0024328323
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 90.09965
-      value: 0.9980479
-      inSlope: -0.00021706702
-      outSlope: -0.00021706702
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 0
-    m_RotationOrder: 0
   windScale: 1
   drag: 80
   lift: 60
+  liftLossAngle: 30
 --- !u!59 &1403108190
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -4058,9 +3976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd73963b600535d4ab3bd165b6625998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 600
+  tileSize: 200
   lodOffsetY: -2
-  tileRes: 30
+  tileRes: 40
   tileLodRes: 10
 --- !u!1 &1514925168
 GameObject:
@@ -4209,7 +4127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1548702337
 Transform:
   m_ObjectHideFlags: 0
