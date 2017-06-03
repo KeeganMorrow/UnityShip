@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,8 +8,8 @@ public class Rudder : MonoBehaviour {
     public float rudderSpeed = 15.0f;
     public float maxAngle = 45f;
     public Slider uiSlider;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         var hinge = GetComponent<HingeJoint>();
         uiSlider.minValue = -maxAngle;
         uiSlider.maxValue = maxAngle;
@@ -17,9 +17,9 @@ public class Rudder : MonoBehaviour {
         hingeLimits.min = -maxAngle;
         hingeLimits.max = maxAngle;
         hinge.limits = hingeLimits;
-	}
-	
-	void FixedUpdate () {
+    }
+    
+    void FixedUpdate () {
         var hinge = GetComponent<HingeJoint>();
         var rudderAx = Input.GetAxis("Rudder");
         var spring = hinge.spring;
@@ -33,5 +33,5 @@ public class Rudder : MonoBehaviour {
 
         var force = transform.right * worldVel *(Vector3.Dot(parentTransform.right, transform.forward)) * forceFactor;
         parentBody.AddForceAtPosition(force, transform.position);
-	}
+    }
 }

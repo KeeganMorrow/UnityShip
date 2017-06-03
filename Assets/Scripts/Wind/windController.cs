@@ -1,18 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class windController : MonoBehaviour {
     public string tagString = "wind";
     private WindZone windZone;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         windZone = GetComponent<WindZone>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		foreach (GameObject windUser in GameObject.FindGameObjectsWithTag(tagString))
+    }
+    
+    // Update is called once per frame
+    void FixedUpdate () {
+        foreach (GameObject windUser in GameObject.FindGameObjectsWithTag(tagString))
         {
             //TODO(Keegan, "Make more generic")
             var userCloth = windUser.GetComponent<Cloth>();
@@ -27,5 +27,5 @@ public class windController : MonoBehaviour {
                 userSail.windVector = transform.forward * windZone.windMain;
             }
         }
-	}
+    }
 }

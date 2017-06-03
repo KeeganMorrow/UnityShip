@@ -1,14 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipHud : MonoBehaviour {
 
     private Rigidbody rigidbody;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rigidbody = GetComponent<Rigidbody>();
-	}
+    }
 
     void OnGUI()
     {
@@ -16,5 +16,5 @@ public class ShipHud : MonoBehaviour {
         GUI.Box(new Rect(0, 0, 100, 20), velstring);
     }
 
-	
+    
 }

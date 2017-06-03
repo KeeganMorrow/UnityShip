@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,10 +26,10 @@ public class ShipSpace : MonoBehaviour {
     public int gridWidth = 1;
     public int gridLength = 1;
     private Tile [,] grid;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         grid = new Tile[gridWidth, gridLength];
-		for(int x=0; x > gridWidth; x++)
+        for(int x=0; x > gridWidth; x++)
         {
             for(int z=0; z > gridWidth; z++)
             {
@@ -39,8 +39,8 @@ public class ShipSpace : MonoBehaviour {
                 grid[x, z] = tile;
             }
         }
-	}
-	
+    }
+    
     public bool isAccessible()
     {
         //var tile = grid[]

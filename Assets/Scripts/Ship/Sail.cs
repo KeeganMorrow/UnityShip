@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class Sail : MonoBehaviour {
 
     private Rigidbody rigidbody;
 
-	void Start () {
+    void Start () {
         rigidbody = transform.parent.parent.GetComponent<Rigidbody>();
         liftCurve = new AnimationCurve();
         dragCurve = new AnimationCurve();
@@ -29,9 +29,9 @@ public class Sail : MonoBehaviour {
         dragCurve.AddKey(new Keyframe(90f, 1f, 0f, 0f));
         dragCurve.postWrapMode = WrapMode.Loop;
         dragCurve.preWrapMode = WrapMode.Loop;
-	}
-	
-	void FixedUpdate () {
+    }
+    
+    void FixedUpdate () {
         //transform.rotation = Quaternion.LookRotation(windVector);
         //TODO: Use relative velocity to wind
         var sailDir = transform.TransformDirection(Quaternion.Euler(dirRotation) * transform.forward);
@@ -63,5 +63,5 @@ public class Sail : MonoBehaviour {
         Debug.DrawRay(transform.TransformPoint(windPoint), dragForce/drag, Color.red);
         Debug.DrawRay(transform.TransformPoint(windPoint), liftForce/lift, Color.blue);
         Debug.DrawRay(transform.TransformPoint(windPoint), sailDir * 10, Color.yellow);
-	}
+    }
 }

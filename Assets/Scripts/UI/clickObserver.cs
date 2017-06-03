@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +8,11 @@ public class clickObserver : MonoBehaviour {
     public GameObject moveObject;
     public GameObject controlObject;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    // Use this for initialization
+    void Start () {
+        
+    }
+    
     //replace Update method in your class with this one
     void FixedUpdate()
     {

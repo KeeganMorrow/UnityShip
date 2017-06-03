@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +8,13 @@ public class PathFind : MonoBehaviour {
     private ShipObject shipObj;
     private ShipSpace shipSpace;
     private TileCoord destination;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         shipObj = GetComponent<ShipObject>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+    
+    // Update is called once per frame
+    void Update () {
         int x = shipObj.shipX, z = shipObj.shipZ;
         if (shipObj.shipZ < destination.z)
         {
@@ -35,7 +35,7 @@ public class PathFind : MonoBehaviour {
         }
         shipObj.shipX = x;
         shipObj.shipZ = z;
-	}
+    }
 
     public void MovePosition(TileCoord dest)
     {

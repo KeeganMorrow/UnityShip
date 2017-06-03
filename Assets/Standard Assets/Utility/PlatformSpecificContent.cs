@@ -24,10 +24,10 @@ namespace UnityStandardAssets.Utility
         [SerializeField] private bool m_ChildrenOfThisObject;
 
 #if !UNITY_EDITOR
-	void OnEnable()
-	{
-		CheckEnableContent();
-	}
+    void OnEnable()
+    {
+        CheckEnableContent();
+    }
 #endif
 
 #if UNITY_EDITOR
@@ -55,12 +55,12 @@ namespace UnityStandardAssets.Utility
         private void CheckEnableContent()
         {
 #if (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN || UNITY_STV )
-		if (m_BuildTargetGroup == BuildTargetGroup.Mobile)
-		{
-			EnableContent(true);
-		} else {
-			EnableContent(false);
-		}
+        if (m_BuildTargetGroup == BuildTargetGroup.Mobile)
+        {
+            EnableContent(true);
+        } else {
+            EnableContent(false);
+        }
 #endif
 
 #if !(UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN || UNITY_STV )

@@ -9,9 +9,9 @@ namespace UnityStandardAssets.Cameras
         // This script is designed to be placed on the root object of a camera rig,
         // comprising 3 gameobjects, each parented to the next:
 
-        // 	Camera Rig
-        // 		Pivot
-        // 			Camera
+        //     Camera Rig
+        //         Pivot
+        //             Camera
 
         [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)] [SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
@@ -24,9 +24,9 @@ namespace UnityStandardAssets.Cameras
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
         private const float k_LookDistance = 100f;    // How far in front of the pivot the character's look target is.
-		private Vector3 m_PivotEulers;
-		private Quaternion m_PivotTargetRot;
-		private Quaternion m_TransformTargetRot;
+        private Vector3 m_PivotEulers;
+        private Quaternion m_PivotTargetRot;
+        private Quaternion m_TransformTargetRot;
 
         protected override void Awake()
         {
@@ -34,10 +34,10 @@ namespace UnityStandardAssets.Cameras
             // Lock or unlock the cursor.
             Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !m_LockCursor;
-			m_PivotEulers = m_Pivot.rotation.eulerAngles;
+            m_PivotEulers = m_Pivot.rotation.eulerAngles;
 
-	        m_PivotTargetRot = m_Pivot.transform.localRotation;
-			m_TransformTargetRot = transform.localRotation;
+            m_PivotTargetRot = m_Pivot.transform.localRotation;
+            m_TransformTargetRot = transform.localRotation;
         }
 
 
@@ -69,8 +69,8 @@ namespace UnityStandardAssets.Cameras
 
         private void HandleRotationMovement()
         {
-			if(Time.timeScale < float.Epsilon)
-			return;
+            if(Time.timeScale < float.Epsilon)
+            return;
 
             // Read the user input
             var x = CrossPlatformInputManager.GetAxis("Camera X");
@@ -98,18 +98,18 @@ namespace UnityStandardAssets.Cameras
             }
 
             // Tilt input around X is applied to the pivot (the child of this object)
-			m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y , m_PivotEulers.z);
+            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y , m_PivotEulers.z);
 
-			if (m_TurnSmoothing > 0)
-			{
-				m_Pivot.localRotation = Quaternion.Slerp(m_Pivot.localRotation, m_PivotTargetRot, m_TurnSmoothing * Time.deltaTime);
-				transform.localRotation = Quaternion.Slerp(transform.localRotation, m_TransformTargetRot, m_TurnSmoothing * Time.deltaTime);
-			}
-			else
-			{
-				m_Pivot.localRotation = m_PivotTargetRot;
-				transform.localRotation = m_TransformTargetRot;
-			}
+            if (m_TurnSmoothing > 0)
+            {
+                m_Pivot.localRotation = Quaternion.Slerp(m_Pivot.localRotation, m_PivotTargetRot, m_TurnSmoothing * Time.deltaTime);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, m_TransformTargetRot, m_TurnSmoothing * Time.deltaTime);
+            }
+            else
+            {
+                m_Pivot.localRotation = m_PivotTargetRot;
+                transform.localRotation = m_TransformTargetRot;
+            }
         }
     }
 }

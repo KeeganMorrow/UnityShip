@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +7,9 @@ public class cannon : MonoBehaviour {
     public float velocityFire = 100f;
     public Vector3 positionFire = new Vector3(0, 0, 0);
     private int trajVertex = 200;
-	// Use this for initialization
-	void Start () {
-	}
+    // Use this for initialization
+    void Start () {
+    }
 
     // Ignoring drag for now (and probably forever)
     void drawTrajectory()
@@ -25,8 +25,8 @@ public class cannon : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
         if(Input.GetKey(KeyCode.Space)){
             drawTrajectory();

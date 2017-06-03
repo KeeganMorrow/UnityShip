@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +11,8 @@ public class Rope : MonoBehaviour {
     private SpringJoint springJoint;
     private HingeJoint hingeJoint;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
         hingeJoint = GetComponent<HingeJoint>();
@@ -20,10 +20,10 @@ public class Rope : MonoBehaviour {
         springJoint.connectedBody = target.GetComponent<Rigidbody>();
         springJoint.connectedAnchor = targetPos;
         springJoint.anchor = pos;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+    
+    // Update is called once per frame
+    void Update () {
         // TODO: Use rope length to move the boom
         var axis = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(axis) > 0.01)
@@ -40,5 +40,5 @@ public class Rope : MonoBehaviour {
         positions[1] = target.GetComponent<Transform>().TransformPoint(targetPos);
         lineRenderer.positionCount = positions.Length;
         lineRenderer.SetPositions(positions);
-	}
+    }
 }
