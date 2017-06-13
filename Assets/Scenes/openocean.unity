@@ -950,8 +950,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0000009652285, y: -0.14966917, z: 0.0078754425}
-    m_Extent: {x: 1.4533316, y: 1.0009059, z: 0.007876193}
+    m_Center: {x: -0.00000091354013, y: -0.14966917, z: 0.007875532}
+    m_Extent: {x: 1.4533329, y: 1.0009067, z: 0.007876258}
   m_DirtyAABB: 0
 --- !u!4 &242627552
 Transform:
@@ -1012,7 +1012,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0056815064, y: 7.316514, z: -4.026043}
+    m_Center: {x: -0.005681506, y: 7.316515, z: -4.026043}
     m_Extent: {x: 0.3843175, y: 15.087954, z: 15.030667}
   m_DirtyAABB: 0
 --- !u!183 &337508623
@@ -1671,6 +1671,66 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6400008, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400024, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400026, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400022, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400012, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400004, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400002, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400014, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400020, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400018, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400016, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400006, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400010, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400028, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300024, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
     - {fileID: 2300022, guid: e9b7eaf2921b23b44a6b031ca9cd23c1, type: 3}
@@ -1728,8 +1788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water: {fileID: 1443673818}
-  airDrag: 1
-  waterDrag: 5
   floaterOffsetY: -0.5
   floaterOffsetBackwardZ: 1
   floaterOffsetForwardZ: 1
@@ -1908,11 +1966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followObj: {fileID: 1382819132}
   isMoving: 1
-  scale: 0.2
-  speed: 1
-  waveDistance: 1
-  noiseStrength: 1
-  noiseWalk: 1
+  offsetSpeed: 0.05
 --- !u!33 &1443673821
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2817,8 +2871,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0000000012805685, y: -1.2339344, z: 0.5513344}
-    m_Extent: {x: 0.05000644, y: 12.104158, z: 13.311837}
+    m_Center: {x: -8.1490725e-10, y: -1.2339392, z: 0.5513325}
+    m_Extent: {x: 0.050006468, y: 12.104166, z: 13.31185}
   m_DirtyAABB: 0
 --- !u!1001 &1618516668
 Prefab:
@@ -3532,6 +3586,6 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0090930015, y: 3.5880342, z: 0.84804535}
-    m_Extent: {x: 0.050069388, y: 13.882457, z: 10.926366}
+    m_Center: {x: -0.0090930015, y: 3.5880346, z: 0.84804726}
+    m_Extent: {x: 0.050069388, y: 13.882457, z: 10.926368}
   m_DirtyAABB: 0
